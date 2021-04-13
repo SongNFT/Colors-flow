@@ -32,17 +32,10 @@ export function ProfileCluster({address}) {
 
   return (
     <div>
-      <h3>Profile: {address}</h3>
-      {profile.isCurrentUser && <ProfileForm />}
+     {/*} <h3>Profile: {address}</h3>*/}
+    
       <ul>
-        <li>
-          <img
-            src={profile.avatar}
-            width="50px"
-            height="50px"
-            alt={profile.name}
-          />
-        </li>
+        
         <li>
           <strong>Name: </strong>
           <span>{profile.name}</span>
@@ -58,6 +51,7 @@ export function ProfileCluster({address}) {
           <span>{profile.info}</span>
         </li>
       </ul>
+      {profile.isCurrentUser && <ProfileForm />}
     </div>
   )
 }

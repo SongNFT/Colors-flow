@@ -15,7 +15,7 @@ export function InitCluster({address}) {
 
   return (
     <div>
-      <h3>Init?: {address}</h3>
+      <h3>{address}</h3>
       <ul>
         <li>
           <strong>Profile: </strong>

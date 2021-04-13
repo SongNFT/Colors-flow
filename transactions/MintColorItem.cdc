@@ -1,5 +1,6 @@
-//import ColorItems from "../contracts/ColorItems.cdc"
-import ColorItems from 0xf8d6e0586b0a20c7
+//!For Emulator
+//import ColorItems from 0x631e88ae7f1d7c20
+import ColorItems from "../contracts/ColorItems.cdc"
 transaction {
   let receiverRef: &{ColorItems.NFTReceiver}
   let minterRef: &ColorItems.NFTMinter

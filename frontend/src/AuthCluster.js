@@ -2,33 +2,50 @@
 
 import React, {useState, useEffect} from "react"
 import {useCurrentUser} from "./hooks/current-user"
+import {useProfile} from "./hooks/profile"
 
-function WithAuth() {
+import "./AuthCluster.css"
+function WithAuth({address}) {
+  
+  const profile = useProfile(address)
   const cu = useCurrentUser()
-
+  useEffect(() => profile.refetch(), [address])
+  if (address == null) return null
   return !cu.loggedIn ? null : (
-    <div>
-      <span>{cu.addr ?? "No Address"}</span>
-      <button onClick={cu.logOut}>Log Out</button>
-    </div>
+  <div class="topnav">
+    <a href="#">{profile.name}</a>
+    <a onClick={cu.logOut}>Logout</a>
+    <a className = "right">{profile.address}</a>
+    <a className = "right"><img
+            src={profile.avatar}
+            width="30px"
+            height="30px"
+            alt={profile.name}
+          /></a>
+  </div>
+    
   )
 }
 
 function SansAuth() {
   const cu = useCurrentUser()
-
   return cu.loggedIn ? null : (
     <div>
-      <button onClick={cu.logIn}>Log In</button>
-      <button onClick={cu.signUp}>Sign Up</button>
+      <div class="topnav">
+        <a href="#" onClick={cu.logIn}>Log In</a>
+        <a onClick={cu.signUp}>Sign Up</a>
+      </div>
+      <h1>Login to Continue</h1>
     </div>
+    
   )
 }
 
 export function AuthCluster() {
+  const cu = useCurrentUser()
   return (
     <>
-      <WithAuth />
+      <WithAuth address={cu.addr} />
       <SansAuth />
     </>
   )

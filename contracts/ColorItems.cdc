@@ -1,5 +1,5 @@
 pub contract ColorItems {
-    pub var totalSupply: UInt64
+    //pub var totalSupply: UInt64
 
 	pub resource NFT {
 		pub let id: UInt64
@@ -61,18 +61,19 @@ pub contract ColorItems {
   }
   pub resource NFTMinter{
 
-	  pub fun mintNFT(): @NFT {
-		  var newNFT <- create NFT(initID: ColorItems.totalSupply)
-          ColorItems.totalSupply = ColorItems.totalSupply + (1 as UInt64)
-		  return <- newNFT
-	  }
+	pub fun mintNFT(): @NFT {
+		//let totalNFT = 0
+		var newNFT <- create NFT(initID: 1)
+        //totalNFT = totalNFT + 1
+		return <- newNFT
+	}
   }
 
  	init() {
 		self.account.save(<-ColorItems.createEmptyCollection(), to: /storage/NFTCollection)
 		self.account.link<&{NFTReceiver}>(/public/NFTReceiver, target: /storage/NFTCollection)
 		self.account.save(<-create NFTMinter(), to: /storage/NFTMinter)
-        self.totalSupply = 0
+     
 	}
 
 }

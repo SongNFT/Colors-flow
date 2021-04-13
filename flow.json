@@ -1,3 +1,4 @@
+
 {
 	"emulators": {
 		"default": {
@@ -6,8 +7,27 @@
 		}
 	},
 	"contracts": {
-		"ColorItems": "./contracts/ColorItems.cdc",
-		"Profile": "./contracts/Profile.cdc"
+		"ColorItems": {
+			"source": "./contracts/ColorItems.cdc",
+			"aliases": {
+				"testnet": "0x631e88ae7f1d7c20"
+			}
+		},
+		"Profile": {
+			"source": "./contracts/Profile.cdc",
+			"aliases": {
+				"testnet": "0x631e88ae7f1d7c20"
+			}
+		},
+		"FungibleToken": {
+			"source": "./contracts/FungibleToken.cdc",
+			"aliases": {
+				"testnet": "9a0766d93b6608b7",
+				"emulator": "ee82856bf20e2aa6"
+			}
+		},
+		"MarketplaceContract": "./contracts/MarketplaceContract.cdc"
+		
 
    },
 	"networks": {
@@ -35,13 +55,10 @@
 	},
 	"deployments": {
 		"testnet": {
-			 "testnet-account": ["ColorItems", "Profile"]
+			 "testnet-account": ["ColorItems", "Profile", "FungibleToken", "MarketplaceContract"]
 		},
 		"emulator": {
-			"emulator-account": ["ColorItems", "Profile"]
+			"emulator-account": ["ColorItems", "FungibleToken", "Profile", "MarketplaceContract" ]
 	   }
    }
 }
-
-
-
